@@ -1,0 +1,884 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <base target="_top" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Add CI Karyawan</title>
+
+    <!-- AdminLTE CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/3.2.0/css/adminlte.css"
+    />
+    <!-- Font Awesome CSS -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.css"
+    />
+    <!-- Google Font: Source Sans Pro -->
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback"
+    />
+    <!-- Data Table -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.datatables.net/1.10.24/css/dataTables.bootstrap4.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.datatables.net/buttons/1.7.1/css/buttons.bootstrap4.min.css"
+    />
+
+    <style>
+      .btn-choice {
+        display: flex;
+        justify-content: left;
+        align-items: center;
+        margin-left: 0.5rem;
+        gap: 0.5rem;
+        margin-bottom: 1rem;
+      }
+
+      .btn-choice a {
+        background-color: white;
+        color: black;
+        border-bottom: 4px solid #e1e1e1;
+        padding: 0.5rem;
+      }
+
+      th {
+        background-color: #3d9970;
+        color: white;
+      }
+
+      .card-title span {
+        font-size: 1.5rem;
+      }
+
+      .card-body table {
+        text-align: center;
+      }
+
+      .modal-body a {
+        color: black;
+      }
+
+      .modal-body a:hover {
+        text-decoration: underline;
+      }
+
+      form h3 {
+        color: white;
+        font-size: 40px;
+        font-weight: 600;
+        width: 30%;
+        text-align: center;
+      }
+
+      form h4 {
+        font-weight: bold;
+        font-size: 20px;
+        width: 30%;
+      }
+
+      .project-title {
+        display: flex;
+        padding: 0.6rem 1.3rem;
+        background-color: #3d9970;
+        margin: 1rem 0.5rem 0 0.5rem;
+        border-radius: 15px;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .project-title input {
+        width: 70%;
+        height: 3rem;
+      }
+
+      .suggested-action,
+      .submission-number,
+      .submission-name,
+      .division-department,
+      .location,
+      .background,
+      .improvement-benefit,
+      .current-process {
+        display: flex;
+        padding: 1rem 1.3rem 0.5rem 1.3rem;
+      }
+
+      .suggested-action input {
+        width: 68%;
+        height: 4rem;
+        margin-left: 0.5rem;
+      }
+
+      .meassure-of-success,
+      .member {
+        padding: 1rem 1.3rem 0.5rem 1.3rem;
+      }
+
+      .box {
+        box-shadow: 10px 10px 20px rgba(172, 172, 172, 0.25);
+        padding: 1rem;
+        background-color: white;
+        border-radius: 10px;
+      }
+
+      .submission-number input,
+      .submission-name input,
+      .division-department input,
+      .location input {
+        width: 70%;
+        text-align: center;
+      }
+
+      .background textarea,
+      .improvement-benefit textarea,
+      .current-process textarea {
+        width: 70%;
+        height: 8rem;
+      }
+    </style>
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+    <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
+  </head>
+
+  <body class="sidebar-mini layout-navbar-fixed layout-fixed">
+    <!-- ./wrapper -->
+    <div class="wrapper">
+      <!-- Navbar -->
+      <nav
+        class="main-header navbar navbar-expand navbar-white navbar-light"
+        style="background-color: #3d9970; align-items: center"
+      >
+        <!-- Left navbar links -->
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link" data-widget="pushmenu" href="#">
+              <i class="fas fa-bars" style="color: white"></i>
+            </a>
+          </li>
+        </ul>
+        <!-- Right navbar links -->
+        <ul class="navbar-nav ml-auto">
+          <!-- User Account: style can be found in dropdown.less -->
+          <li class="nav-item dropdown">
+            <a
+              class="nav-link"
+              data-toggle="dropdown"
+              href="#"
+              style="color: white; margin-right: 1rem"
+            >
+              <i class="fas fa-user-circle" style="margin-right: 8px"></i>
+              <span class="d-none d-md-inline">User</span>
+            </a>
+            <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+              <a href="#" class="dropdown-item">
+                <!-- User image and details -->
+                <div class="media">
+                  <i
+                    class="fas fa-user-circle fa-3x"
+                    style="margin-right: 10px"
+                  ></i>
+                  <div class="media-body">
+                    <h3 class="dropdown-item-title">User</h3>
+                    <p class="text-sm">Karyawan</p>
+                  </div>
+                </div>
+              </a>
+              <div class="dropdown-divider"></div>
+              <a
+                href="#"
+                class="dropdown-item"
+                data-toggle="modal"
+                data-target="#accountModal"
+                >Change Account</a
+              >
+              <a href="#" class="dropdown-item dropdown-footer">Logout</a>
+            </div>
+          </li>
+        </ul>
+      </nav>
+      <!-- /.navbar -->
+
+      <!-- Main Sidebar Container -->
+      <aside class="main-sidebar sidebar-light-primary elevation-4">
+        <!-- Brand Logo -->
+        <a
+          href="#"
+          class="brand-link"
+          style="background-color: #3d9970; color: white"
+        >
+          <img
+            src="https://www.spil.co.id/img/spil_logo.581f4306.svg"
+            alt="logo-spil"
+            class="brand-image img-circle"
+            style="padding-left: 0; margin-left: 10px"
+          />
+          <span class="font-weight-bold" style="margin-left: 16px; color: white"
+            >SPIL</span
+          >Organiser
+        </a>
+        <!-- Sidebar -->
+        <div class="sidebar">
+          <!-- Sidebar Menu -->
+          <nav class="mt-4">
+            <ul
+              class="nav nav-pills nav-sidebar flex-column"
+              data-widget="treeview"
+              role="menu"
+              data-accordion="false"
+            >
+              <li class="nav-item">
+                <a href="#" class="nav-link">
+                  <i class="nav-icon"
+                    ><img
+                      src="https://www.spil.co.id/img/spil_logo.581f4306.svg"
+                      alt="logo-spil"
+                      style="width: 34px"
+                  /></i>
+                  <p
+                    class="font-weight-bold"
+                    style="font-size: 10pt; padding-left: 16px"
+                  >
+                    Connecting Islands
+                  </p>
+                </a>
+              </li>
+            </ul>
+            <div class="form-inline mt-4">
+              <div class="input-group mb-2" data-widget="sidebar-search">
+                <input
+                  class="form-control form-control-sidebar"
+                  type="search"
+                  placeholder="Search"
+                  aria-label="Search"
+                />
+                <div class="input-group-append">
+                  <button class="btn btn-sidebar">
+                    <i class="fas fa-search fa-fw"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+            <ul
+              class="nav nav-pills nav-sidebar flex-column"
+              data-widget="treeview"
+              role="menu"
+              data-accordion="true"
+            >
+              <!-- Add more sidebar menu items here -->
+              <? var url = getScriptUrl(); ?>
+              <li class="nav-item">
+                <a href="#" class="nav-link">
+                  <i
+                    class="fa-solid fa-circle-user"
+                    style="font-size: 20px; margin-right: 0.5rem"
+                  ></i>
+                  <p>CI / OPI</p>
+                </a>
+              </li>
+              <li class="nav-item" style="margin-top: 7rem">
+                <a href="/ped.html" class="nav-link">
+                  <i
+                    class="fa-solid fa-right-to-bracket"
+                    style="font-size: 20px; margin-right: 0.5rem"
+                  ></i>
+                  <p>Go to HRMS</p>
+                </a>
+              </li>
+            </ul>
+          </nav>
+          <!-- /.sidebar-menu -->
+        </div>
+        <!-- /.sidebar -->
+      </aside>
+
+      <!-- Content Wrapper. Contains page content -->
+      <div class="content-wrapper">
+        <!-- Main content -->
+        <section class="content" style="padding: 4vh">
+          <!-- container fluid -->
+          <div class="container-fluid">
+            <!-- Your content goes here -->
+            <h3 class="font-weight-bold">CI/OPI Online</h3>
+            <h4 class="font-weight-light">Unlocking Excellent!</h4>
+            <div class="btn-choice">
+              <a href="/Karyawan/myhistoryKaryawan.html">My History</a>
+              <a href="/Karyawan/needApprovalKaryawan.html">Need Approve</a>
+              <a
+                href="/Karyawan/addCi.html"
+                style="border-bottom: 4px solid #3d9970"
+                >Add / Edit</a
+              >
+            </div>
+            <form action="" class="submit-form" id="projectForm">
+              <div class="project-title">
+                <h3>Project Title</h3>
+                <input
+                  type="text"
+                  id="projectTitle"
+                  name="project_title"
+                  placeholder="Input Project Title"
+                />
+              </div>
+              <div class="suggested-action">
+                <h4>Suggested Action</h4>
+                <textarea
+                  type="text"
+                  id="recommendationList"
+                  name="recommendationList"
+                  placeholder="Tanya AI untuk Suggested Plan"
+                  style="width: 50rem; height: 180px; margin-left: 3.5rem"
+                ></textarea>
+                <!-- <div id="recommendationList"></div> -->
+                <button type="button" onclick="submitForm()">💡</button>
+              </div>
+              <div class="submission-number">
+                <h4>Submission Number</h4>
+                <input type="text" placeholder="Auto" />
+              </div>
+              <div class="submission-name">
+                <h4>Name</h4>
+                <input type="text" placeholder="Auto" />
+              </div>
+              <div class="division-department">
+                <h4>Division / Departement</h4>
+                <input type="text" placeholder="Auto" />
+              </div>
+              <div class="location">
+                <h4>Location</h4>
+                <input type="text" placeholder="Auto" />
+              </div>
+              <div class="background">
+                <h4>Background</h4>
+                <textarea
+                  type="text"
+                  placeholder="Input Background Improvement"
+                ></textarea>
+              </div>
+              <div class="improvement-benefit">
+                <h4>Improvement Benefit</h4>
+                <textarea
+                  type="text"
+                  placeholder="Input Improvement Benefit"
+                ></textarea>
+              </div>
+              <div
+                class="meassure-of-success"
+                style="padding: 1rem 1.3rem 0.5rem 1.3rem"
+              >
+                <h4>Meassure Of Success</h4>
+                <div class="box">
+                  <div
+                    style="
+                      margin-bottom: 1rem;
+                      display: flex;
+                      justify-content: flex-end;
+                      width: 100%;
+                    "
+                  >
+                    <button
+                      type="button"
+                      id="addMemberBtn"
+                      class="btn btn-success"
+                    >
+                      Add
+                    </button>
+                  </div>
+                  <table class="table table-striped" style="width: 100%">
+                    <thead>
+                      <tr>
+                        <th
+                          scope="col"
+                          style="
+                            width: 5%;
+                            background-color: #3d9970;
+                            color: white;
+                          "
+                        >
+                          No
+                        </th>
+                        <th
+                          scope="col"
+                          style="
+                            width: 20%;
+                            background-color: #3d9970;
+                            color: white;
+                          "
+                        >
+                          Item
+                        </th>
+                        <th
+                          scope="col"
+                          style="
+                            width: 15%;
+                            background-color: #3d9970;
+                            color: white;
+                          "
+                        >
+                          OUM
+                        </th>
+                        <th
+                          scope="col"
+                          style="
+                            width: 20%;
+                            background-color: #3d9970;
+                            color: white;
+                          "
+                        >
+                          Baseline
+                        </th>
+                        <th
+                          scope="col"
+                          style="
+                            width: 20%;
+                            background-color: #3d9970;
+                            color: white;
+                          "
+                        >
+                          Target
+                        </th>
+                        <th
+                          scope="col"
+                          style="
+                            width: 20%;
+                            background-color: #3d9970;
+                            color: white;
+                          "
+                        >
+                          Description
+                        </th>
+                        <th
+                          scope="col"
+                          style="
+                            width: 20%;
+                            background-color: #3d9970;
+                            color: white;
+                          "
+                        >
+                          Action
+                        </th>
+                      </tr>
+                    </thead>
+                    <tbody id="tableBody">
+                      <tr>
+                        <td style="width: 5%">1</td>
+                        <td style="width: 20%">
+                          <textarea
+                            oninput="adjustTextArea(this)"
+                            id="itemInput"
+                            placeholder="Item"
+                            style="
+                              width: 100%;
+                              height: 2rem;
+                              outline: none;
+                              border: 2px solid #e1e1e1;
+                              border-radius: 5px;
+                              resize: none;
+                              overflow: hidden;
+                            "
+                          ></textarea>
+                        </td>
+                        <td style="width: 15%">
+                          <textarea
+                            oninput="adjustTextArea(this)"
+                            id="oumInput"
+                            placeholder="OUM"
+                            style="
+                              width: 100%;
+                              height: 2rem;
+                              outline: none;
+                              border: 2px solid #e1e1e1;
+                              border-radius: 5px;
+                              resize: none;
+                              overflow: hidden;
+                            "
+                          ></textarea>
+                        </td>
+                        <td style="width: 20%">
+                          <input
+                            type="number"
+                            id="baselineInput"
+                            placeholder="Baseline"
+                            style="
+                              width: 100%;
+                              outline: none;
+                              border: 2px solid #e1e1e1;
+                              border-radius: 5px;
+                            "
+                          />
+                        </td>
+                        <td style="width: 20%">
+                          <input
+                            type="number"
+                            id="targetInput"
+                            placeholder="Target"
+                            style="
+                              width: 100%;
+                              outline: none;
+                              border: 2px solid #e1e1e1;
+                              border-radius: 5px;
+                            "
+                          />
+                        </td>
+                        <td style="width: 20%">
+                          <textarea
+                            oninput="adjustTextArea(this)"
+                            id="descriptionInput"
+                            placeholder="Description"
+                            style="
+                              width: 100%;
+                              height: 2rem;
+                              outline: none;
+                              border: 2px solid #e1e1e1;
+                              border-radius: 5px;
+                              resize: none;
+                              overflow: hidden;
+                            "
+                          ></textarea>
+                        </td>
+                        <td>
+                          <p style="text-align: center">-</p>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <div class="current-process">
+                <h4>Current Process</h4>
+                <textarea
+                  type="text"
+                  placeholder="Input Improvement Benefit"
+                ></textarea>
+              </div>
+              <div class="member">
+                <h4>Team Members</h4>
+                <div class="box">
+                  <div
+                    style="
+                      margin-bottom: 1rem;
+                      display: flex;
+                      justify-content: flex-end;
+                      width: 100%;
+                    "
+                  >
+                    <button
+                      type="button"
+                      id="addMember"
+                      class="btn btn-success"
+                    >
+                      Add
+                    </button>
+                  </div>
+                  <table class="table table-striped" style="text-align: center">
+                    <thead>
+                      <tr>
+                        <th
+                          scope="col"
+                          style="
+                            background-color: #3d9970;
+                            color: white;
+                            width: 5%;
+                          "
+                        >
+                          No
+                        </th>
+                        <th
+                          scope="col"
+                          style="
+                            background-color: #3d9970;
+                            color: white;
+                            width: 75%;
+                          "
+                        >
+                          Team Members
+                        </th>
+                        <th
+                          scope="col"
+                          style="
+                            background-color: #3d9970;
+                            color: white;
+                            width: 30%;
+                          "
+                        >
+                          Role
+                        </th>
+                        <th
+                          scope="col"
+                          style="
+                            background-color: #3d9970;
+                            color: white;
+                            width: 30%;
+                          "
+                        >
+                          Action
+                        </th>
+                      </tr>
+                    </thead>
+
+                    <tbody id="bodyMember">
+                      <tr style="text-align: center; justify-content: center">
+                        <td>1</td>
+                        <td>
+                          <input
+                            type="text"
+                            id="namaMember"
+                            placeholder="Input Nama Member"
+                            style="
+                              outline: none;
+                              border: none;
+                              text-align: center;
+                              width: 100%;
+                              background: transparent;
+                            "
+                          />
+                        </td>
+                        <td>
+                          <input
+                            type="text"
+                            id="roleMember"
+                            placeholder="Input Role Member"
+                            style="
+                              outline: none;
+                              border: none;
+                              text-align: center;
+                              background: transparent;
+                            "
+                          />
+                        </td>
+                        <td>
+                          <p style="text-align: center">-</p>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <div
+                style="
+                  margin-top: 2rem;
+                  display: flex;
+                  justify-content: flex-end;
+                  margin-right: 2rem;
+                "
+              >
+                <button
+                  type="button"
+                  class="btn btn-success"
+                  data-toggle="modal"
+                  data-target="#detailModal"
+                >
+                  Submit
+                </button>
+              </div>
+            </form>
+          </div>
+          <!-- /.container-fluid -->
+        </section>
+        <!-- /.content -->
+      </div>
+      <!-- /.content-wrapper -->
+
+      <!-- Main Footer -->
+      <footer class="main-footer">
+        <!-- To the right -->
+        <strong class="float-right d-none d-sm-inline"> v1.0.0 </strong>
+        <!-- Default to the left -->
+        <strong style="color: black">
+          <a href="https://spil.co.id/" style="color: blue">2024 SPIL</a>.
+          Crafted by HRIS & HRIS Army
+        </strong>
+      </footer>
+    </div>
+
+    <!-- REQUIRED SCRIPTS -->
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <!-- AdminLTE -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/3.2.0/js/adminlte.js"></script>
+    <!-- Bootstrap 4 -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Modal untuk memilih akun -->
+    <div
+      class="modal fade"
+      id="accountModal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="accountModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="accountModalLabel">Select Account</h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="d-flex justify-content-between">
+              <!-- Pengguna 1 -->
+              <div class="flex-fill mr-2 text-center">
+                <a href="/HOD/needApprovalHOD.html" class="list-group-item">
+                  <div class="user-icon">
+                    <i class="fas fa-user fa-2x"></i>
+                    <!-- Icon Pengguna -->
+                  </div>
+                  <div>HOD</div>
+                  <!-- Teks Atasan -->
+                </a>
+              </div>
+              <!-- Pengguna 2 -->
+              <div class="flex-fill ml-2 text-center">
+                <a href="/SM-GM/needApprovalSM-GM.html" class="list-group-item">
+                  <div class="user-icon">
+                    <i class="fas fa-user fa-2x"></i>
+                    <!-- Icon Pengguna -->
+                  </div>
+                  <div>Senior Manager</div>
+                  <!-- Teks Atasan -->
+                </a>
+              </div>
+              <!-- Pengguna 2 -->
+              <div class="flex-fill ml-2 text-center">
+                <a
+                  href="/Karyawan/needApprovalKaryawan.html"
+                  class="list-group-item"
+                >
+                  <div class="user-icon">
+                    <i class="fas fa-user fa-2x"></i>
+                    <!-- Icon Pengguna -->
+                  </div>
+                  <div>Karyawan</div>
+                  <!-- Teks Atasan -->
+                </a>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-dismiss="modal"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Text Area -->
+    <script>
+      function adjustTextArea(textarea) {
+        textarea.style.height = "auto"; // Reset tinggi
+        textarea.style.height = textarea.scrollHeight + "px"; // Setel tinggi berdasarkan tinggi konten
+      }
+    </script>
+
+    <!-- Add Meassure of Succes -->
+    <script>
+      document
+        .getElementById("addMemberBtn")
+        .addEventListener("click", function () {
+          var tbody = document.getElementById("tableBody");
+          var rowIndex = tbody.children.length;
+          var row = tbody.insertRow();
+          var cell1 = row.insertCell(0);
+          var cell2 = row.insertCell(1);
+          var cell3 = row.insertCell(2);
+          var cell4 = row.insertCell(3);
+          var cell5 = row.insertCell(4);
+          var cell6 = row.insertCell(5);
+          var cell7 = row.insertCell(6); // Cell for the delete button
+
+          cell1.innerHTML = rowIndex + 1;
+          cell2.innerHTML = `<textarea style="width: 100%; border: none; resize: none;" placeholder="Item">${
+            document.getElementById("itemInput").value
+          }</textarea>`;
+
+          cell3.innerHTML = `<input type="number" value="${
+            document.getElementById("oumInput").value
+          }" style="width: 100%; border: none;" placeholder="OUM">`;
+          cell4.innerHTML = `<input type="number" value="${
+            document.getElementById("baselineInput").value
+          }" style="width: 100%; border: none;" placeholder="Baseline">`;
+          cell5.innerHTML = `<input type="number" value="${
+            document.getElementById("targetInput").value
+          }" style="width: 100%; border: none;" placeholder="Target">`;
+          cell6.innerHTML = `<textarea style="width: 100%; border: none; resize: none;" placeholder="Description">${
+            document.getElementById("descriptionInput").value
+          }</textarea>`;
+
+          // Add the delete button
+          cell7.innerHTML = `<button onclick="this.parentNode.parentNode.remove()" class="btn btn-danger"><i class="fas fa-times"></i></button>`;
+
+          // Clear the inputs
+          document.getElementById("itemInput").value = "";
+          document.getElementById("baselineInput").value = "";
+          document.getElementById("targetInput").value = "";
+          document.getElementById("descriptionInput").value = "";
+        });
+    </script>
+
+    <!-- Add Members -->
+    <script>
+      document
+        .getElementById("addMember")
+        .addEventListener("click", function () {
+          var tbody = document.getElementById("bodyMember");
+          var rowIndex = tbody.children.length; // Start numbering from 2 because 1 is already in HTML
+          var row = tbody.insertRow();
+          var cell1 = row.insertCell(0);
+          var cell2 = row.insertCell(1);
+          var cell3 = row.insertCell(2);
+          var cell4 = row.insertCell(3);
+
+          cell1.innerText = rowIndex + 1;
+          cell2.innerHTML =
+            '<input type="text" placeholder="Input Nama Member" style="outline: none; border: none; text-align: center; width: 100%; background: transparent;">';
+          cell3.innerHTML =
+            '<input type="text" placeholder="Input Role Member" style="outline: none; border: none; text-align: center; background: transparent;">';
+          cell4.innerHTML = `<button onclick="this.parentNode.parentNode.remove()" class="btn btn-danger"><i class="fas fa-times"></i></button>`;
+        });
+    </script>
+
+    <!-- Function Rekomendatiion -->
+    <script>
+      function submitForm() {
+        var projectTitle = document.getElementById("projectTitle").value;
+        fetch("/test", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/x-www-form-urlencoded",
+          },
+          body: "project_title=" + encodeURIComponent(projectTitle),
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            var recommendationList =
+              document.getElementById("recommendationList");
+            recommendationList.value = "";
+            data.recommendations.forEach(function (recommendation) {
+              recommendationList.value += "- " + recommendation + "\n";
+            });
+          })
+          .catch((error) => console.error("Error:", error));
+      }
+    </script>
+  </body>
+</html>
