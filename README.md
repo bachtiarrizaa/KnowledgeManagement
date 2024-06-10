@@ -2,26 +2,18 @@
 
 ### Deskripsi
 
-**Ships Crew Recommendation** adalah aplikasi sederhana yang membantu dalam merekomendasikan kru untuk kapal berdasarkan berbagai kriteria seperti pengalaman, keterampilan, dan kualifikasi. Aplikasi ini dikembangkan menggunakan `Flask` sebagai backend, dengan analisis data dan model prediksi yang dibangun menggunakan `pandas` dan `scikit-learn`.
-
-### Persyaratan
-
-![Python](https://img.shields.io/badge/Python-3.9-blue)
-![Flask](https://img.shields.io/badge/Flask-3.0.3-orange)
-![pandas](https://img.shields.io/badge/pandas-2.2.2-yellow)
-![requests](https://img.shields.io/badge/requests-2.31.0-green)
-![scikit-learn](https://img.shields.io/badge/scikit--learn-1.4.2-red)
+**Knowledge Management** adalah sistem sederhana yang membantu dalam merekomendasikan rencana yang disarankan berdasarkan judul projek . Aplikasi ini dikembangkan menggunakan `Flask` sebagai backend, dengan analisis data dan model prediksi yang dibangun menggunakan `Cosine Similiarity`
 
 ### Instalasi
 
 1. **Clone Repository**
 
    ```
-   git clone https://github.com/hizidha/ml-shipscrew.git
-   cd ml-shipscrew-main
+   git clone https://github.com/bachtiarrizaa/KnowledgeManagement.git
+   cd KnowledgeManagement
    ```
 
-   atau bisa langsung download melalui link [berikut](https://github.com/hizidha/ml-shipscrew/archive/refs/heads/main.zip).
+   atau bisa langsung download melalui link [berikut](https://github.com/bachtiarrizaa/KnowledgeManagement/archive/refs/heads/main.zip).
 
 2. **Unzip file dan Buka melalui Visual Studio Code**
    ```
